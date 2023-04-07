@@ -31,9 +31,11 @@ div.comment1, div.comment2, div.comment3 {
 }
 .copyright{
     font-family: monospace;
-    width: 265px;
-    text-align: right;
+    margin-left: 1200px;
 }
 ul {
     list-style-image: url('../img/pie_icon.gif');
+}
+.validation {
+    float: right;
 }

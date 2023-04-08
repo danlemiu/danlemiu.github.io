@@ -248,9 +248,13 @@
             padding: 15px 30px;
           }
           
-        .footer-copyright-text {
+        .copyright-text {
             margin-left: auto;
             font-size: 13px;
+        }
+
+        .validator {
+            float: right;
         }
 
 

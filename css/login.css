@@ -1,0 +1,42 @@
+  .d-flex {
+    margin-left: auto;
+  }
+  
+  .d-flex label {
+    color: white;
+    padding-top: 10px;
+    padding-right: 15px;
+  } 
+  
+  .legend {
+    margin-top: 50px;
+  }
+  .col-md-6 {
+    margin: auto;
+    margin-top: 60px;
+  }
+  
+  #navbarColor01 a.nav-link {
+    border-left: 1px solid;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  a.navbar-brand {
+    padding-right: 20px;
+  }
+
+  #datesupplied {
+    color: gray;
+  }
+  
+  .right {
+    float: right;
+  }
+  
+  .right button {
+    margin-left: 30px;
+  }
+  
+  
+  

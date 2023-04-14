@@ -23,20 +23,17 @@ let user = {
 //askPassword(user.loginOk, user.loginFail);
 
 //Use wrapper
-//askPassword(() => user.loginOk(), () => user.loginFail());
-
+askPassword(() => user.loginOk(), () => user.loginFail());
 
 //Use bind
 let bindAskPassword = askPassword.bind(user, () => user.loginOk(), () => user.loginFail());
 bindAskPassword();
-//askPassword.bind(user, user.loginOk, user.loginFail);
 
 //Use call
-//askPassword.call(user, () => user.loginOk(), () => user.loginFail());
-
+askPassword.call(user, () => user.loginOk(), () => user.loginFail());
 
 //Use apply
-//askPassword.apply(user, [() => user.loginOk(), () => user.loginFail()]);
+askPassword.apply(user, [() => user.loginOk(), () => user.loginFail()]);
 
 
 //Question 2
@@ -50,6 +47,4 @@ let group = {
         }.bind(this));
     }
 };
-
-
 group.showList();

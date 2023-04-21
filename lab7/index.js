@@ -25,14 +25,15 @@ let user = {
 //Use wrapper
 askPassword(() => user.loginOk(), () => user.loginFail());
 
-//Use bind
+// //Use bind
 let bindAskPassword = askPassword.bind(user, () => user.loginOk(), () => user.loginFail());
 bindAskPassword();
 
-//Use call
+
+// //Use call
 askPassword.call(user, () => user.loginOk(), () => user.loginFail());
 
-//Use apply
+// //Use apply
 askPassword.apply(user, [() => user.loginOk(), () => user.loginFail()]);
 
 
@@ -48,3 +49,15 @@ let group = {
     }
 };
 group.showList();
+
+
+
+
+
+
+
+
+
+
+
+

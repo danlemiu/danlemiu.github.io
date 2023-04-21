@@ -7,16 +7,17 @@ let Student1 = {
     lastName: "",
     grades: [],
     inputNewGrade: function(newGrade){
-        this.grades.push(newGrade);
+        return this.grades.push(newGrade);
     },
     computeAverageGrade: function(){
-        let totalGrade = 0;
-        let numOfGrade = 0;
-        for(let grade in this.grades){
-            totalGrade += this.grades[grade];
-            numOfGrade++;
-        }
-        return totalGrade/numOfGrade;
+        // let totalGrade = 0;
+        // let numOfGrade = 0;
+        // for(let grade in this.grades){
+        //     totalGrade += this.grades[grade];
+        //     numOfGrade++;
+        // }
+        // return totalGrade/numOfGrade;
+        return this.grades.reduce((total, grade) => total + grade, 0) / this.grades.length;
     }
 };
 

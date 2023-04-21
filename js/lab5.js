@@ -141,7 +141,6 @@ console.log('Multiply of [1,2,3,4]: ' + multiply([1,2,3,4]));
 function findSecondBiggest(arr) {
     let max = arr[0];
     let secondMax = arr[1];
-    let temp;
     for( let i = 2; i < arr.length; i++){
         if(arr[i] > max){
             secondMax = max;
@@ -162,14 +161,6 @@ console.log('Second biggest of [1,2,3,4,5]: ' + findSecondBiggest([1,2,3,4,5]));
 //printFibo(n=3, a=0, b=1), prints-out: "0, 1, 1", as output; printFibo(n=6, a=0, b=1), prints-out: "0, 1, 1, 2, 3, 5", as output; 
 //and printFibo(n=10, a=0, b=1), prints-out: "0, 1, 1, 2, 3, 5, 8, 13, 21, 34", as output).
 
-function fibonacci(i) {
-    if(i <= 1){
-        return i;
-    } else {
-        return fibonacci(i-1) + fibonacci(i-2);
-    }
-
-}
 
 function printFibo(n, a, b) {
     if(n == 1){
@@ -183,7 +174,7 @@ function printFibo(n, a, b) {
     }
     return fibo;
 }
-console.log('Fibonacci of (n=5, a=0, b=1): ' + printFibo(10,0,1));
+console.log('Fibonacci of (n=10, a=0, b=1): ' + printFibo(10,0,1));
 
 
 //14. Use Array Methods: filter, map, reduce, etc to implement functions below:
@@ -199,7 +190,7 @@ console.log('Sum of number > 20 of [1,39,27,15]: ' + sum([1,39,27,15]));
 //      return a new array which contains all string, length is greater than and equal to 5, and contains letter ‘a’.
 
 function getNewArray(arr) {
-    return arr.filter(a => a.length > 5).filter(a => a.indexOf('a') >= 0);
+    return arr.filter(a => a.length >= 5 && a.indexOf('a') >= 0);
 }
 console.log('Length >= 5 and contains letter a of [declaration, array, greater, function]: ' + getNewArray(["declaration", "array", "greater", "function"]));
 

@@ -1,15 +1,8 @@
 .logo img {
   width: 50px;
   height: 50px;
-}
+} 
   
-  #navbarColor01 {
-    padding-left: 75%;
-  }
-  
-  #navbarColor01 > div {
-    width: 50%;
-  }
   
   img.product-image {
     width: 30px;
@@ -23,21 +16,30 @@
     #divPlaceOrder {
       float: right;
   }
-  
-  .quantity-group {
+
+.td-quantity {
     width: 30%;
-  }
+} 
   
-  div.input-group {
-    width: 50%;
-  }
-  
-  input.input-number {
-    max-width: 20%;
-    text-align: center;
-  }
 
   footer {
     position: absolute;
     bottom: 0;
   }
+
+#navbarColor01 {
+    padding-left: 75%;
+}
+
+#navbarColor01 > div {
+    width: 50%;
+}
+
+div.input-group {
+    width: 50%;
+}
+
+input.input-number {
+    max-width: 20%;
+    text-align: center;
+}

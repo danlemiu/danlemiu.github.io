@@ -3,38 +3,30 @@ const { use } = require('../routes/loginRouter');
 let db = [];
 let counter = 0;
 class ShoppingCart {
-    id;
-    username;
+    id;    
     productName;
     productPrice;
     total;
     productQuantity;
+    username;
 
-    constructor(id, username, productName, productPrice, total, productQuantity) {
-        this.id = id;
-        this.username = username;
+    constructor(id, productName, productPrice, total, productQuantity, username) {
+        this.id = id;        
         this.productName = productName;
         this.productPrice = productPrice;
         this.total = total;
         this.productQuantity = productQuantity;
-    }
-
-    save() {
-        this.id = ++counter;
-        db.push(this);
-        return this;
+        this.username = username;
     }
 
     static getAll() {
         return db;
     }
-       
 
-    static delete(id) {
-        const index = db.findIndex((s) => s.id == id);
-        const deletedItem = db[index];
-        db.splice(index, 1);
-        return deletedItem;
+    save() {
+        this.id = ++counter; //start with 1
+        db.push(this);
+        return this;
     }
 
     edit() {
@@ -43,12 +35,22 @@ class ShoppingCart {
         return this;
     }
 
+    static delete(id) {
+        const index = db.findIndex((s) => s.id == id);
+        const deletedItem = db[index];
+        db.splice(index, 1);
+        return deletedItem;
+    } 
+
     static placeOrder(username) {
         let index = db.findIndex((s) => s.username == username);
+
+        // loop to delete all rows of the user
         while (index >= 0) {
             db.splice(index, 1);
             index = db.findIndex((s) => s.username == username);
         }
+
         return index;
     }
 
@@ -56,7 +58,7 @@ class ShoppingCart {
         return db.filter((s) => s.username === username);
     }
 
-    static getShoppingCartByUsernameAndProductName(username, productName) {
+    static getShoppingCartByUsernameProductName(username, productName) {
         return db.find((s) => s.username === username && s.productName === productName);
     }
    

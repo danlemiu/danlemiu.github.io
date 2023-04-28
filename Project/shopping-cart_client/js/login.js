@@ -6,16 +6,14 @@ window.onload = function () {
   };
   
   async function login() {
-    const response = await fetch('http://localhost:3000/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        username: document.getElementById('username').value,
-        password: document.getElementById('password').value,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
+      const response = await callAPI(
+          'http://localhost:3000/login',
+          'POST',
+          JSON.stringify({
+              username: document.getElementById('username').value,
+              password: document.getElementById('password').value,
+          })
+      );
   
     if (response.ok) {
         let jsonData = await response.json();     
@@ -29,6 +27,22 @@ window.onload = function () {
         document.getElementById('errorMessage').innerHTML = jsonData;
     }
   }
+
+
+
+async function callAPI(url, method, body) {
+    let setting = {
+        method: method,
+        body: body,
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+    };
+
+    const response = await fetch(url, setting);
+
+    return response;
+}
 
 function getWorkingDirectory() {
     var filePath = window.location.pathname;

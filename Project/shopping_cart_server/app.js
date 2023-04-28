@@ -10,9 +10,8 @@ app.use(cors());
 
 app.use('/login', loginRouter);
 app.use('/products', productRouter);
-app.use('/shoppingcarts', shoppingCartRouter);
+app.use('/shoppingcart', shoppingCartRouter);
 
-//error handling
 app.use((err, req, res, next) => {
   res.status(500).json(err.message);
 });

@@ -30,9 +30,11 @@ async function loadProductList() {
     
     productList = jsonData;
 
-    for (let product of jsonData) {
-        addNewProductRowToTable(product.name, product.price, product.image, product.stock);
-    }
+    if (jsonData != undefined) {
+        for (let product of jsonData) {
+            addNewProductRowToTable(product.name, product.price, product.image, product.stock);
+        }
+    }    
 }
 
 async function loadShoppingCart() {
@@ -67,7 +69,7 @@ async function loadShoppingCart() {
 
 
 async function getShoppingCart() {
-  const url = 'http://localhost:3000/shoppingcarts/users/' + getUser().username + '/carts';
+  const url = 'http://localhost:3000/shoppingcart/users/' + getUser().username + '/shoppingcart';
   const response = await callAPI(url, 'GET');
   return await response.json();
 }
@@ -87,7 +89,7 @@ async function addProductToShoppingCart(productName, productPrice) {
     }
 
     const response = await callAPI(
-        'http://localhost:3000/shoppingcarts',
+        'http://localhost:3000/shoppingcart',
         'POST',
         JSON.stringify({
             username: getUser().username,
@@ -106,7 +108,7 @@ async function addProductToShoppingCart(productName, productPrice) {
 
 async function updateProductShoppingCart(shoppingCartRowId, productName, productPrice, total, productQuantity) {
     const response = await callAPI(
-    'http://localhost:3000/shoppingcarts/' + shoppingCartRowId,
+    'http://localhost:3000/shoppingcart/' + shoppingCartRowId,
     'PUT',
     JSON.stringify({
         username: getUser().username,
@@ -125,7 +127,7 @@ async function updateProductShoppingCart(shoppingCartRowId, productName, product
 }
 
 async function deleteProductShoppingCart(shoppingCartRowId) {
-    const response = await callAPI('http://localhost:3000/shoppingcarts/' + shoppingCartRowId, 'DELETE');
+    const response = await callAPI('http://localhost:3000/shoppingcart/' + shoppingCartRowId, 'DELETE');
 
     let jsonData = await response.json();
     if (jsonData) {
@@ -135,7 +137,7 @@ async function deleteProductShoppingCart(shoppingCartRowId) {
 
 async function placeOrder() {
   const response = await callAPI(
-    'http://localhost:3000/shoppingcarts/users/' + getUser().username + '/place-order',
+    'http://localhost:3000/shoppingcart/users/' + getUser().username + '/placeorder',
     'POST'
   );
   if (response.ok) {
@@ -218,9 +220,9 @@ function addNewShoppingCartRowToTable(rowId, name, price, total, quantity, isAdd
         cell.appendChild(document.createTextNode(total));
         row.appendChild(cell);
 
-        cell = document.createElement('td');
-        cell.setAttribute('id', 'quantity-group-' + rowId);
-        cell.setAttribute('class', 'quantity-group');
+        let quantityCell = document.createElement('td');
+        quantityCell.setAttribute('id', 'td-quantity-' + rowId);
+        quantityCell.setAttribute('class', 'td-quantity');
 
     
         let inputGroup = document.createElement('span');
@@ -244,13 +246,13 @@ function addNewShoppingCartRowToTable(rowId, name, price, total, quantity, isAdd
         inputQuantity.setAttribute('type', 'text');
         inputQuantity.setAttribute('class', 'form-control input-number');
 
-        cell.appendChild(inputGroup);
+        quantityCell.appendChild(inputGroup);
         inputGroup.appendChild(btnMinus);
         inputGroup.appendChild(inputQuantity);
         inputQuantity.value = quantity;
         inputGroup.appendChild(btnPlus);
 
-        row.appendChild(cell);
+        row.appendChild(quantityCell);
     }
 
     document.getElementById('tbodyShoppingCart').appendChild(row);
@@ -343,10 +345,12 @@ async function callAPI(url, method, body) {
 
     const response = await fetch(url, setting);
 
-    if (response.ok) {
+    if (response.ok)
+    {
         return response;
     }
-    else {
+    else
+    {
         window.location.href = getWorkingDirectory() + '/login.html';
     }
 }

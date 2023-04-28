@@ -5,6 +5,6 @@
     "\\models",
     "\\routes"
   ],
-  "SelectedNode": "\\controllers\\shoppingCartController.js",
+  "SelectedNode": "\\routes\\shoppingCartRouter.js",
   "PreviewInSolutionExplorer": false
 }

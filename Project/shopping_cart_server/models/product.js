@@ -12,33 +12,38 @@ class Product {
       this.price = price;
       this.stock = stock;
     }
+
+    static getAll() {
+        return db;
+    }
   
     save() {
       db.push(this);
       return this;
-    }
-  
-    static getAll() {
-      return db;
-    }  
+    } 
   
     static getCurrentStock(productName) {
-      const p = db.find((p) => p.name == productName);
-      return p.stock;
+      const product = db.find((p) => p.name == productName);
+      return product.stock;
     }
   
     static updateProductStock(shoppingCart) {
-      let outOfStockProducts = '';
-      for (let shoppingCartRow of shoppingCart) {
-        let index = db.findIndex((p) => p.name == shoppingCartRow.productName);
-        let product = db[index];
-        if (product.stock - shoppingCartRow.productQuantity >= 0) {
-          product.stock = product.stock - shoppingCartRow.productQuantity;
-        } else {
-          outOfStockProducts += shoppingCartRow.productName + ', ';
+        let outOfStockProducts = '';
+        for (let shoppingCartRow of shoppingCart)
+        {
+            let index = db.findIndex((p) => p.name == shoppingCartRow.productName);
+            let product = db[index];
+            if (product.stock - shoppingCartRow.productQuantity >= 0)
+            {
+                product.stock = product.stock - shoppingCartRow.productQuantity;
+            }
+            else
+            {
+                outOfStockProducts += shoppingCartRow.productName + ', ';
+            }
         }
-      }
-      return outOfStockProducts;
+
+        return outOfStockProducts;
     }
   }
   

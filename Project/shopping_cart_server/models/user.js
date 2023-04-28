@@ -3,6 +3,7 @@
     id;
     username;
     password;
+
     constructor(id, username, password) {
       this.id = id;
       this.username = username;
